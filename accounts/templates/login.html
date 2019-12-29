@@ -4,9 +4,9 @@
 
 {% block content %}
 <form method="POST">
-        {% csrf_token %}
-        {{ login_form }}
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    {% csrf_token %}
+    {{ login_form }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
     
 {% endblock %}
