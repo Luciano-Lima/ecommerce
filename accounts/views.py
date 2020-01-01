@@ -40,8 +40,21 @@ def logout(request):
 
 def register(request):
     """Render the user registration form"""
+    if request.user.is_authenticated:
+        return redirect(reverse('index'))
     if request.method == "POST":
         registration_form = UserRegistrationForm(request.POST) 
+        if registration_form.is_valid():
+            #Saving the user to the database
+            registration_form.save()
+            #Log the authenticated user in
+            user = auth.authenticate(username=request.POST['username'], password=request.POST['password1'])
+            if user:
+                auth.login(user=user, request=request)
+                messages.success(request, "You have successfully been registered!")
+                return redirect(reverse('index'))
+            else:
+                messages.error(request, "Please check all details and try again...")
     else:
         registration_form = UserRegistrationForm()
     return render(request, 'register.html', {"registration_form": registration_form})
