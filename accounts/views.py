@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from accounts.forms import UserLoginForm, UserRegistrationForm
 # Create your views here.
 def index(request):
@@ -58,3 +59,10 @@ def register(request):
     else:
         registration_form = UserRegistrationForm()
     return render(request, 'register.html', {"registration_form": registration_form})
+
+
+def user_profile(request):
+    """User profile page"""
+    #Retrieves the user from the database based on email
+    user = User.objects.get(email=request.user.email)
+    return render(request, 'profile.html', {"profile": user})

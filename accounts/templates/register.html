@@ -1,7 +1,14 @@
-{% extends 'base.html' %} {% block page_title %}Registration Page{% endblock %} {% block page_heading %}User Registration{% endblock %} {% block content %}
+{% extends 'base.html' %} 
+{% load bootstrap_tags %}
+
+{% block page_title %}Registration Page{% endblock %} 
+{% block page_heading %}User Registration{% endblock %}
+
+{% block content %}
 <form method="POST">
-    {% csrf_token %} {{ registration_form.as_p }}
-    <button type="submit">Create your account</button>
+    {% csrf_token %}
+    {{ registration_form | as_bootstrap }}
+    <button type="submit" class="btn btn-outline-info">Create your account</button>
 </form>
 <hr>
 <p>Already have an account,  <a href="{% url 'login' %}">sign in <i class="fas fa-angle-right"></i></a></p>

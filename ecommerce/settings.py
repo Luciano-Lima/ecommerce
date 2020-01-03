@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_forms_bootstrap',
     'accounts',
 ]
 
@@ -126,3 +127,15 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
+#Reset email 
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+
+#Gmail config
+
+EMAIL_USE_TLS = True  # Email incriptation
+EMAIL_HOST = 'smtp.gmail.com'    # Server address
+EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+EMAIL_PORT = 587  #Smtp port
+
