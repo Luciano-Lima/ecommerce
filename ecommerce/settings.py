@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
     'accounts',
+    'products',
 ]
 
 MIDDLEWARE = [
@@ -66,12 +67,14 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
     },
 ]
+                
 
 
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
@@ -126,8 +129,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
+#THIS MIGHT NOT BE NECESSARY THIS IS FOR CLOULD9 -----------------------------------------
+# MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 #Reset email 
 # EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
