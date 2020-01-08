@@ -1,18 +1,43 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>all products</h1>
 
-{% for product in products %}
-{{ product.name }}
-{{ product.image }}
-{{ product.description }}
-{{ product.price }}
-
-<hr>
-<form action="" method="POST"></form>
-{% csrf_token %}
-<input name="quantity" type="number" min="1" max="10" placeholder="Quantity">
-<button class="btn btn-success" type="submit">Add to Trolley</button>
-{% endfor %}
+<div class="container">
+    {% for product in products %}
+    <div class="row">
+        <div class="new-produto">
+            <div class="product-name">
+                <h1>{{ product.name }}</h1> 
+            </div>
+        </div>
+            
+        <div class="col-md-4 new-produto">
+            <div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image }}')"></div>
+        </div>
+        <div class="col-md-4 new-produto">
+            <div class="product-description">
+                <li>{{ product.description | truncatewords:30 }}</li>
+            </div>
+        </div>
+        <div class="new-product">
+            <div class="col-md-4 product-price">
+                {{ product.price }}
+                <hr>
+            </div>
+            <div class="add-to-cart">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input name="quantity" type="number" min="1" max="10" placeholder="Quantity">
+                    <button class="btn btn-success" type="submit">Add to Trolley</button>
+                </form>
+            </div>
+            
+        </div>
+        
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
+
+    
+    
