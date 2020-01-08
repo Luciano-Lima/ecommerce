@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% block content %}
+
+<div class="container">
+    {% for i in cart_items %}
+    <div class="row">
+        <div class="new-produto">
+            <div class="product-name">
+                <h1>{{ i.product.name }}</h1> 
+            </div>
+        </div>
+            
+        <div class="col-md-4 new-produto">
+            <div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ i.product.image }}')"></div>
+        </div>
+        <div class="col-md-4 new-produto">
+            <div class="product-description">
+                <p>{{ i.product.description | truncatewords:30 }}</p>
+            </div>
+        </div>
+        <div class="new-product">
+            <div class="col-md-4 product-price">
+                <p><i class="fas fa-pound-sign">{{ i.product.price }}</i></p>
+                <hr>
+            </div>
+            <div class="add-to-cart">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input name="quantity" type="number" min="1" max="10" placeholder="Quantity">
+                    <div class="input-group-addon">{{item.quantity}}</div>
+                    <button class="btn btn-success" type="submit">Add to Trolley</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row">
+        <p>Total</p>
+        <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
+        <a href="/" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+    </div>
+</div>
+{% endblock %}
+            
+        
