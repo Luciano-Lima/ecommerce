@@ -1,43 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <div class="container">
-    {% for product in products %}
     <div class="row">
-        <div class="new-produto">
-            <div class="product-name">
-                <h1>{{ product.name }}</h1> 
-            </div>
-        </div>
-            
-        <div class="col-md-4 new-produto">
-            <div class="product-img" style="background-image: url('{{ MEDIA_URL }}{{ product.image }}')"></div>
-        </div>
-        <div class="col-md-4 new-produto">
-            <div class="product-description">
-                <p>{{ product.description | truncatewords:30 }}</p>
-            </div>
-        </div>
-        <div class="new-product">
-            <div class="col-md-4 product-price">
-                <p><i class="fas fa-pound-sign">{{ product.price }}</i></p>
+        {% for product in products %}
+        <div class="col-md-4">
+            <div class="new-product">
+                <div class="product-img"><img src="{{ product.image.url }}" alt=""></div>
+                    <h2 class="product-name">{{ product.name }}</h2>
+                    <p class="product-description">{{ product.description | truncatechars:250 }}</p>
+                    <p><i class="fas fa-pound-sign">{{ product.price }}</i></p>
+                    <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input name="quantity" type="number" min="1" max="10" class="form-control" placeholder="Quantity">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit"><i class="fas fa-cart-arrow-down"></i>Add to Trolley</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
                 <hr>
             </div>
-            <div class="add-to-cart">
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <input name="quantity" type="number" min="1" max="10" placeholder="Quantity">
-                    <button class="btn btn-success" type="submit">Add to Trolley</button>
-                </form>
-            </div>
-            
-        </div>
-        
         {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock %}
-
-    
-    
