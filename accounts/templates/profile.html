@@ -5,5 +5,6 @@
 
 
 {% block content %}
-<p>{{ profile.username }}</p>
+<p class="user-profile">Welcome back {{ profile.username }}!<span class="user-profile-sigout-space">|</span><a href="{% url 'logout' %}"> Sign out</a></p>
+
 {% endblock %}
