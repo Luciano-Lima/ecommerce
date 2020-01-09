@@ -1,9 +1,28 @@
+/* Navbar */
 a.navbar-brand img {
     width: 50px;
     height: 50px;
-    
 }
 
+.d-inline-block {
+    margin-right: 10px;
+}  
+
+.fas {
+    padding-left: 16px;
+}
+
+/* User profile page */
+.user-profile {
+    margin: 50px;
+}
+    
+.user-profile-sigout-space {
+    margin-left: 6px;
+}
+
+
+/* All products page */
 .product-name {
     min-height: 150px;
 }
@@ -12,9 +31,6 @@ a.navbar-brand img {
     height: 200px;
     
 }
-
-
-
 
 
 
