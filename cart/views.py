@@ -8,11 +8,16 @@ def view_cart(request):
 
 def add_to_cart(request, id):
     """Add items to cart"""
-    quantity=int(request.POST.get('quantity'))
-    cart = request.get('cart',{})
-    cart[id] = cart.get(id, quantity)
-    request.get['cart'] = cart
+    quantity = int(request.POST.get('quantity'))
+    cart = request.session.get('cart', {})
+    if id in cart:
+        cart[id] = int(cart[id]) + quantity      
+    else:
+        cart[id] = cart.get(id, quantity) 
+    request.session['cart'] = cart
     return redirect(reverse('index'))
+
+
 
 
 def update_cart(request, id):
@@ -22,6 +27,6 @@ def update_cart(request, id):
     if quantity > 0:
         cart[id] = quantity
     else:
-        cart.pop()
-    request.get['cart'] = cart
+        cart.pop(id)
+    request.session['cart'] = cart
     return redirect(reverse('view_cart'))
