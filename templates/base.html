@@ -20,50 +20,56 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
                 <ul class="navbar navbar-nav navbar-right">
-                    <li class="nav-item">
-                        {% if user.is_authenticated %}
-                        <span><a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user-circle"></i></span><span>Profile</span></a>
+                    <li class="nav-item justify-content-center">
+                    {% if user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user-circle"></i><span class="icon-nav-description">Profile</span></a>
                     </li>
-                    <li class="nav-item">
-                        <span><a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></span><span>logout</span></a>
-                        
+                    <li class="nav-item justify-content-center">
+                        <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i><span class="icon-nav-description">Logout</span></a>
                     </li>
+                        {% if number_of_items > 0 %}
+                    <li class="nav-item justify-content-center">
+                        <span class="test"><a class="nav-link" href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i><span class="cart-quantity rounded-circle">{{ number_of_items }}</span><span class="icon-nav-description">Trolley</span></a></span>
                         {% else %}
-                    <li class="nav-item">
-                        <span><a class="nav-link" href="{% url 'login' %}"><i class="fas fa-user-circle"></i></span><span>login</span></a>
-                        
+                        <a class="nav-link" href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i><span class="icon-nav-description">Trolley</span></a>
                     </li>
-                    <li class="nav-item">
-                        <span><a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user-alt"></i></span><span>Register</span></a>
+                        {% endif %}
+                    {% else %}
+                    <li class="nav-item justify-content-center">
+                        <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-user-circle"></i><span class="icon-nav-description">login</span></a>
                     </li>
-                    <li class="nav-item">
-                        <span><a class="nav-link" href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i></span>Trolley</span></a>
-                        
+                    <li class="nav-item justify-content-center">
+                        <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user-alt"></i><span class="icon-nav-description">Register</span></a>
+                    </li>
+                    <li class="nav-item justify-content-center">
+                        <a class="nav-link" href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i><span class="icon-nav-description"></span>Trolley</span></a>
                     </li>
                     {% endif %}
                 </ul>
             </div>
         </nav>
-        <hr>
-        <hr>
-        <hr>
-        <hr>
         {% if messages %}
         <div>
             {% for message in messages %}
                 {{ message }}
             {% endfor %}
         </div>
-        {% endif %}
+            {% endif %}
     </header>
-                {% block content %}{% endblock %}
+        {% block content %}{% endblock %}
     <footer>
-            
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
+                            
+                            
+                        
+                
+                    
+                   
+                   
