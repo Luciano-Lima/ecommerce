@@ -12,6 +12,10 @@ a.navbar-brand img {
     padding-left: 16px;
 }
 
+.icon-nav-description {
+    display:block;
+}
+
 /* User profile page */
 .user-profile {
     margin: 50px;
@@ -23,6 +27,12 @@ a.navbar-brand img {
 
 
 /* All products page */
+
+.new-product {
+    margin-top:150px;
+    text-align: center;
+}
+
 .product-name {
     min-height: 150px;
 }
@@ -32,5 +42,26 @@ a.navbar-brand img {
     
 }
 
+/* Cart page */
+.cart-quantity {
+    color: #fff;
+    font-size: 12px;
+    margin-left: 3px;
+    font-weight: 800;
+    
+    
+}
 
+.rounded-circle {
+    background-color: #ff000f;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 9px;
+    padding-left: 5px;
+}
 
+.test {
+    border-radius: 50%
+    
+}
