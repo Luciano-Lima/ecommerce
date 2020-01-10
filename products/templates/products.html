@@ -6,13 +6,13 @@
         {% for product in products %}
         <div class="col-md-4">
             <div class="new-product">
-                <div class="product-img"><img src="{{ product.image.url }}" alt=""></div>
+                <div class="product-img"><img src="{{ product.image.url }}" alt="produto image"></div>
                     <h2 class="product-name">{{ product.name }}</h2>
                     <p class="product-description">{{ product.description | truncatechars:250 }}</p>
                     <p><i class="fas fa-pound-sign">{{ product.price }}</i></p>
-                    <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                    <form class="form-inline" method="POST" action="{% url 'add_to_cart' product.id %}">
                         {% csrf_token %}
-                        <div class="input-group">
+                        <div class="form-group">
                             <input name="quantity" type="number" min="1" max="10" class="form-control" placeholder="Quantity">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="submit"><i class="fas fa-cart-arrow-down"></i>Add to Trolley</button>
