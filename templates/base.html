@@ -15,7 +15,8 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <!-- Navegation -->
+        <nav class="navbar navbar-expand-md fixed-top">
             <a class="navbar-brand" href="#"><img src="/static/img/logo.png" class="d-inline-block align-center">Ecommerce</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -50,6 +51,7 @@
                 </ul>
             </div>
         </nav>
+        <!-- Diplays a message to the user -->
         {% if messages %}
         <div>
             {% for message in messages %}
@@ -58,6 +60,14 @@
         </div>
             {% endif %}
     </header>
+    <!-- Search for products -->
+    <div class="container">
+        <form class="form-inline" method="GET" action="{% url 'search' %}">
+            <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search an item..." aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+    
         {% block content %}{% endblock %}
     <footer>
     </footer>
