@@ -16,7 +16,7 @@ class Order(models.Model):
     def __str__(self):
         return "{0}-{1}-{2}-{3}".format(self.id, self.first_name, self.last_name, self.date)
 
-class Product_Ordered(models.Model):
+class ProductOrdered(models.Model):
     order = models.ForeignKey(Order, null=False)
     product = models.ForeignKey(Product, null=False)
     quantity = models.IntegerField(blank=False)
