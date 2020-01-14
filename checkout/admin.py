@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Order, Product_Ordered
+from .models import Order, ProductOrdered
 
 # Register your models here.
 class OrderInline(admin.TabularInline):
-    model = Product_Ordered
+    model = ProductOrdered
 
 class OrderAdmin(admin.ModelAdmin):
     inlines = (OrderInline, )
