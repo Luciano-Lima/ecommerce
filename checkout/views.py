@@ -17,7 +17,7 @@ def checkout(request):
     if request.method=="POST":
         order = OrderForm(request.POST)
         payment = PaymentForm(request.POST)
-        if order.form.is_valid() and payment.is_valid():
+        if order.is_valid() and payment.is_valid():
             # get an instance of the order, (commit=false) prevents overwritting to the database
             order = order.save(commit=False)
             order.date = timezone.now()
@@ -51,4 +51,6 @@ def checkout(request):
             print(PaymentForm.errors)
             messages.error(request, "Your card has been declined.")
     else:
-        return render(request, "checkout.html", {"order": order, "payment": payment, "publishable": settings.STRIPE_PUBLISHABLE})
+        order = OrderForm()
+        payment = PaymentForm()
+    return render(request, "checkout.html", {"order": order, "payment": payment, "publishable": settings.STRIPE_PUBLISHABLE})
