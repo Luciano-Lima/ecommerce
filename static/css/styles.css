@@ -1,8 +1,4 @@
-/* Container */
-/* .container {
-    width: 70%;
-    height: auto;
-} */
+
 
 .bg-light {
     background-color: #f1f1f1!important;
@@ -19,9 +15,6 @@ a.navbar-brand img {
     margin-right: 10px;
 }  
 
-/* .fas {
-    padding-left: 16px;
-} */
 
 .fa-search {
     padding-left: 0;
@@ -69,10 +62,7 @@ a.navbar-brand img {
     padding-left: 5px;
 }
 
-/* .test {
-    border-radius: 50%
-    
-} */
+
 
 /* Stripe Checkout */
 #credit-card-errors {
