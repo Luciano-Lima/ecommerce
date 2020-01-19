@@ -10,13 +10,14 @@
                 <div class="card-body text-center">
                     <h3 class="product-name">{{ product.name }}</h3>
                     <p class="product-description">{{ product.description | truncatechars:250 }}</p>
-                    <p><i class="fas fa-pound-sign">{{ product.price }}</i></p>
-                    <form class="form-inline" method="POST" action="{% url 'add_to_cart' product.id %}">
-                        {% csrf_token %}
-                        <input class="form-control" name="quantity" type="number" min="1" max="10" placeholder="Quantity">
-                        <button class="btn btn-success" type="submit"><i class="fas fa-cart-arrow-down"></i>Add to Trolley</button>
-                    </form>
+                    <span><i class="fas fa-pound-sign"></i></span>
+                    <span>{{ product.price }}</span>
                 </div>
+                    <form class="form-inline justify-content-center" method="POST" action="{% url 'add_to_cart' product.id %}">
+                        {% csrf_token %}
+                        <input class="form-control form-control-sm mr-3 w-25" name="quantity" type="number" min="1" max="10" placeholder="Quantity">
+                        <button class="btn btn-success" type="submit"><i class="fas fa-cart-arrow-down"></i></button>
+                    </form>
             </div>
             <hr>
         </div>
@@ -24,6 +25,7 @@
     </div>
 </div>
 {% endblock %}
+                        
                         
                         
                         
