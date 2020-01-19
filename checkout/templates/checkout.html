@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% load bootstrap_tags %}
+
+{% block head_js %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+    //<![CDATA[
+        Stripe.publishableKey = '{{ publishable }}';
+    //]]>
+</script>
+<script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock head_js%}
+
+{% block content %}
+<div class="container">
+    {% for item in cart_items %}
+    <div class="row">
+        <div class="new-produto">
+            <div class="product-name">
+                <h1>{{ item.product.name }}</h1> 
+            </div>
+        </div>
+        <div class="col-md-4 new-produto">
+            <div class="product-img"><img src="{{ item.product.image.url }}" alt="product image"></div>
+        </div>
+        <div class="col-md-4 new-produto">
+            <div class="product-description">
+                <p>{{ item.product.description  }}</p>
+            </div>
+        </div>
+        <div class="new-product">
+            <div class="col-md-4 product-price">
+                <p><i class="fas fa-pound-sign">{{ item.product.price }}</i></p>
+                <p><i class="">{{ item.quantity }}</i></p>
+                <hr>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row">
+        <p>Total</p>
+        <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
+        <div class="add-to-cart">
+            <form role="form" class="form-inline" id="payment" action="{% url 'checkout' %}" method="POST">
+                {% csrf_token %}
+                <div id="credit-card-errors">
+                    <div class="alert-message bock-message error" id="stripe-error-message"></div>
+                </div>
+                <div class="add-to-cart">
+                    {{ order | as_bootstrap }}
+                </div>
+                <div class="add-to-cart">
+                    {{ payment | as_bootstrap }}
+                </div>
+                
+                <!-- <div class="input-group-addon">{{item.quantity}}</div> -->
+                <button class="btn btn-success" id="submit-payment" name="commit" type="submit">Make Payment</button>
+            </form>
+        </div>    
+    </div>
+</div>
+{% endblock content %}

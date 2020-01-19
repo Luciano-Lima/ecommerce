@@ -1,89 +1,160 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block page_title %}{% endblock%}</title>
     <!--Bootstrap-->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<!--Font Awesome-->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<!--Custom style-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!--Custom style-->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css">
     <!-- Stripe js block -->
     {% block head_js %}
     {% endblock head_js %}
-     <!-- End of Stripe js block -->
+    <!-- End of Stripe js block -->
 </head>
 <body>
-    <header>
-        <!-- Navegation -->
-        <nav class="navbar navbar-expand-md fixed-top">
-            <a class="navbar-brand" href="#"><img src="/static/img/logo.png" class="d-inline-block align-center">Ecommerce</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
-                <ul class="navbar navbar-nav navbar-right">
-                    <li class="nav-item justify-content-center">
-                    {% if user.is_authenticated %}
-                        <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user-circle"></i><span class="icon-nav-description">Profile</span></a>
-                    </li>
-                    <li class="nav-item justify-content-center">
-                        <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i><span class="icon-nav-description">Logout</span></a>
-                    </li>
-                        {% if number_of_items > 0 %}
-                    <li class="nav-item justify-content-center">
-                        <span class="test"><a class="nav-link" href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i><span class="cart-quantity rounded-circle">{{ number_of_items }}</span><span class="icon-nav-description">Trolley</span></a></span>
-                        {% else %}
-                        <a class="nav-link" href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i><span class="icon-nav-description">Trolley</span></a>
-                    </li>
-                        {% endif %}
-                    {% else %}
-                    <li class="nav-item justify-content-center">
-                        <a class="nav-link" href="{% url 'login' %}"><i class="fas fa-user-circle"></i><span class="icon-nav-description">login</span></a>
-                    </li>
-                    <li class="nav-item justify-content-center">
-                        <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user-alt"></i><span class="icon-nav-description">Register</span></a>
-                    </li>
-                    <li class="nav-item justify-content-center">
-                        <a class="nav-link" href="{% url 'view_cart' %}"><i class="fas fa-shopping-cart"></i><span class="icon-nav-description"></span>Trolley</span></a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
-        <!-- Diplays a message to the user -->
-        {% if messages %}
-        <div>
-            {% for message in messages %}
-                {{ message }}
-            {% endfor %}
-        </div>
-            {% endif %}
-    </header>
-    <!-- Search for products -->
     <div class="container">
-        <form class="form-inline" method="GET" action="{% url 'search' %}">
-            <input class="form-control mr-sm-2" type="text" name="q" placeholder="Search an item..." aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
-    
+        <header>
+            <!-- Navegation -->
+            <nav class="navbar navbar-expand-md navbar-light bg-light">
+                <a class="navbar-brand" href="#"><img src="/static/img/logo.png" class="d-inline-block align-center">Ecommerce</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+                    <ul class="navbar navbar-nav navbar-right">
+                        <li class="nav-item text-center">
+                            {% if user.is_authenticated %}
+                            <a class="nav-link" href="{% url 'profile' %}">
+                                <i class="fas fa-user-circle"></i>
+                                <span class="icon-nav-description">Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item text-center">
+                            <a class="nav-link" href="{% url 'logout' %}">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="icon-nav-description">Logout</span>
+                            </a>
+                        </li>
+                            {% if number_of_items > 0 %}
+                        <li class="nav-item text-center">
+                            <a class="nav-link" href="{% url 'view_cart' %}">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="cart-quantity rounded-circle icon-nav-description">{{ number_of_items }}</span>
+                                <span class="icon-nav-description">Trolley</span>
+                            </a>
+                            {% else %}
+                        
+                            <li class="nav-item text-center">
+                                <a class="nav-link" href="{% url 'view_cart' %}">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span class="icon-nav-description">Trolley</span>
+                                </a>
+                            </li>
+                        </li>                
+                            {% endif %}
+                            {% else %}    
+                        <li class="nav-item text-center">
+                            <a class="nav-link" href="{% url 'login' %}">
+                                <i class="fas fa-user-circle"></i>
+                                <span class="icon-nav-description">login</span>
+                            </a>
+                        </li>                 
+                        <li class="nav-item text-center">
+                            <a class="nav-link" href="{% url 'register' %}">
+                                <i class="fas fa-user-alt"></i>
+                                <span class="icon-nav-description">Register</span>
+                            </a>
+                        </li>
+                        <li class="nav-item text-center">
+                            <a class="nav-link" href="{% url 'view_cart' %}">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="icon-nav-description">Trolley</span>
+                            </a>
+                        </li>
+                            {% endif %}
+                    </ul>
+                </div>       
+            </nav>
+            <!-- Diplays a message to the user -->
+                {% if messages %}
+            <div>
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+            </div>
+                {% endif %}
+            
+        </header>
+        <!-- Search for products -->
+        <div class="container">
+            <div class="col-md-12 mb-4 mt-4 align-center">
+                <form class="form-inline justify-content-center" method="GET" action="{% url 'search' %}">
+                    <input class="form-control form-control-sm mr-3 w-75 p-3" type="text" name="q" placeholder="Search" aria-label="Search">
+                    <button><i class="fas fa-search" aria-hidden="true"></i></button>
+                </form>
+            </div>
+        </div>
         {% block content %}{% endblock %}
-    <footer>
-    </footer>
+        <!-- Footer -->
+        <footer class="page-footer align-center font-small navbar-light bg-light pt-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <form class="form-inline justify-content-center" method="GET" action="{% url 'search' %}">
+                            <input class="form-control form-control-sm mr-3 w-75" type="text" name="q" placeholder="Search" aria-label="Search">
+                            <button><i class="fas fa-search" aria-hidden="true"></i></button>        
+                        </form>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <form class="form-inline justify-content-center">
+                            <input class="form-control form-control-sm mr-3 w-75" type="text"  placeholder="Your email" aria-label="Your email">
+                            <button><i class="fas fa-envelope" aria-hidden="true"></i></button> 
+                        </form>            
+                    </div>
+                </div>
+                <div class="container">        
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 text-center">
+                            <div class="mb-3 ">    
+                                <a class="fb-ic">
+                                    <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                                </a>
+                                <a class="tw-ic">
+                                    <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                                </a>
+                                <a class="ins-ic">
+                                    <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                                </a>
+                                <a class="pin-ic">
+                                    <i class="fab fa-pinterest fa-lg white-text fa-2x"></i>
+                                </a>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Ecommerce</div>
+        </footer>
+    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
                             
-                            
-                        
-                
-                    
-                   
-                   
+                                     
+    
+
+
+    
+
