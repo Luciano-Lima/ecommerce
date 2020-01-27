@@ -23,8 +23,8 @@ def add_to_cart(request, id):
 def update_cart(request, id):
     """Add or Remove itens from the cart"""
     quantity = int(request.POST.get('quantity'))
-    cart = request.get('cart',{})
-    if quantity > 0:
+    cart = request.session.get('cart',{})
+    if quantity >= 0:
         cart[id] = quantity
     else:
         cart.pop(id)
