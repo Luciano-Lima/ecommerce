@@ -1,49 +1,44 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
 {% load bootstrap_tags %}
+
 {% block content %}
 
 <div class="container">
-    {% for item in cart_items %}
-    <div class="row">
-        <div class="new-produto">
-            <div class="product-name">
-                <h1>{{ item.product.name }}</h1> 
-                
-            </div>
-        </div>
-            
-        <div class="col-md-4 new-produto">
-            <div class="product-img"><img src="{{ item.product.image.url }}" alt=""></div>
-        </div>
-
-        <div class="col-md-4 new-produto">
-            <div class="product-description">
-                <p>{{ item.product.description | truncatewords:30 }}</p>
-            </div>
-        </div>
-        <div class="new-product">
-            <div class="col-md-4 product-price">
-                <p><i class="fas fa-pound-sign">{{ item.product.price }}</i></p>
-                <hr>
-            </div>
-            <div class="add-to-cart">
-                <form class="form-inline" action="{% url 'update_cart' item.id %}" method="POST">
+    <div class="row justify-content-center">
+        {% for item in cart_items %}
+        <div class="col-sm-12 col-lg-4 col-md-4">
+            <div class="card text-center">
+                <img class="card-img-top" src="{{ item.product.image.url }}" alt="produto image">
+                <div class="card-body text-center">
+                    <h3 class="product-name">{{ item.product.name }}</h3>
+                    <p class="product-description">{{ item.product.description }}</p>
+                    <span><i class="fas fa-pound-sign"></i></span>
+                    <span>{{ item.product.price }}</span>
+                </div>
+                <form class="form-inline justify-content-center" method="POST" action="{% url 'update_cart' item.id %}">
                     {% csrf_token %}
-                    <input name="quantity" type="number" min="0" max="10" placeholder="New Quantity">
-                    <div class="input-group-addon">{{item.quantity}}</div>
-                    <button class="btn btn-success" type="submit">Edit Trolley</button>
+                    <input class="form-control form-control-sm mr-3 w-25" name="quantity" type="number" min="0" max="10" placeholder="New Qty">
+                    <span>{{ item.quantity }}</span>
+                    <button class="btn btn-success" type="submit"><i class="fas fa-cart-arrow-down"></i></button>
                 </form>
             </div>
+            <hr>
         </div>
-    {% endfor %}
+        {% endfor %}
     </div>
+    
+</div>
+<div class="container">
     <div class="row">
-        <p>Total</p>
-        <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
-        <a href="/" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
+        <div class="col-sm-12 col-md-12 text-center">
+            <hr>
+            <span>Total</span>
+            <span><i class="fas fa-pound-sign"></i>{{ total }}</span>
+            <a href="{% url 'checkout' %}" ><button class="btn btn-success" type="submit">Procced to Checkout</button></a>
+        </div>
     </div>
 </div>
-{% endblock %}
-            
-        
+                        
+{% endblock %}   
+
