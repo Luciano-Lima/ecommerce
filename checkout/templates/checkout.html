@@ -14,50 +14,62 @@
 
 {% block content %}
 <div class="container">
-    {% for item in cart_items %}
-    <div class="row">
-        <div class="new-produto">
-            <div class="product-name">
-                <h1>{{ item.product.name }}</h1> 
-            </div>
-        </div>
-        <div class="col-md-4 new-produto">
-            <div class="product-img"><img src="{{ item.product.image.url }}" alt="product image"></div>
-        </div>
-        <div class="col-md-4 new-produto">
-            <div class="product-description">
-                <p>{{ item.product.description  }}</p>
-            </div>
-        </div>
-        <div class="new-product">
-            <div class="col-md-4 product-price">
-                <p><i class="fas fa-pound-sign">{{ item.product.price }}</i></p>
-                <p><i class="">{{ item.quantity }}</i></p>
-                <hr>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
-    <div class="row">
-        <p>Total</p>
-        <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
-        <div class="add-to-cart">
-            <form role="form" class="form-inline" id="payment" action="{% url 'checkout' %}" method="POST">
-                {% csrf_token %}
-                <div id="credit-card-errors">
-                    <div class="alert-message bock-message error" id="stripe-error-message"></div>
+    <div class="row justify-content-center">
+        {% for item in cart_items %}
+        <div class="col-sm-12 col-lg-4 col-md-4">
+            <div class="card text-center">
+                <img class="card-img-top" src="{{ item.product.image.url }}" alt="produto image">
+                <div class="card-body text-center">
+                    <h3 class="product-name">{{ item.product.name }}</h3>
+                    <p class="product-description">{{ item.product.description | truncatechars:250 }}</p>
+                    <span><i class="fas fa-pound-sign"></i></span>
+                    <span>{{ item.product.price }}</span>
                 </div>
-                <div class="add-to-cart">
-                    {{ order | as_bootstrap }}
-                </div>
-                <div class="add-to-cart">
-                    {{ payment | as_bootstrap }}
-                </div>
-                
-                <!-- <div class="input-group-addon">{{item.quantity}}</div> -->
-                <button class="btn btn-success" id="submit-payment" name="commit" type="submit">Make Payment</button>
-            </form>
-        </div>    
+                <form class="form-inline justify-content-center" method="POST" action="{% url 'update_cart' item.id %}">
+                    {% csrf_token %}
+                    <input class="form-control form-control-sm mr-3 w-25" name="quantity" type="number" min="1" max="10" placeholder="New Qty">
+                    <span>{{ item.quantity }}</span>
+                    <button class="btn btn-success" type="submit"><i class="fas fa-cart-arrow-down"></i></button>
+                </form>
+            </div>
+            <hr>
+        </div>
+        {% endfor %}
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 text-center">
+            <hr>
+            <span>Total</span>
+            <span><i class="fas fa-pound-sign"></i>{{ total }}</span>
+            <a href="{% url 'checkout' %}" ><button class="btn btn-success" type="submit">Procced to Checkout</button></a>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <form role="form" class="form-group" id="payment-form" action="{% url 'checkout' %}" method="POST">
+        {% csrf_token %}
+        <div id="card-error">
+            <div class="alert-message bock-message error" id="stripe-error-message"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="text-center">Your Details</h4>
+                {{ order_form | as_bootstrap }}
+            </div>
+            <div class="col-md-6">
+                <h4 class="text-center">Card Details</h4>
+                {{ payment_form | as_bootstrap }}    
+            </div>
+        </div>
+        <button class="btn btn-success text-center" id="submit_payment_btn" name="commit" type="submit">Make Payment</button>
+    </form>
+</div>   
 {% endblock content %}
+            
+            
+            
+                
+                
