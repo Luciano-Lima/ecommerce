@@ -22,11 +22,9 @@
     {% block head_js %}
     {% endblock head_js %}
     <!-- End of Stripe js block -->
-    
-    
 </head>
 <body>
-    <div class="container">
+    <!-- <div class="container"> -->
         <header>
             <!-- Navegation -->
             <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -34,6 +32,16 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <!-- Mobile search form -->
+                <div id="mobile-search form-control form-control-sm mr-3 w-75 p-3">
+                    <div class="col-md-6 offset-1 mb-4 mt-4 align-center">
+                        <form class="form-inline justify-content-center" method="GET" action="{% url 'search' %}">
+                            <input class="form-control form-control-sm mr-3 w-75 p-3" type="text" name="q" placeholder="Search" aria-label="Search">
+                            <button><i class="fas fa-search" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                </div>
+
                 <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
                     <ul class="navbar navbar-nav navbar-right">
                         <li class="nav-item text-center">
@@ -99,8 +107,8 @@
                 {% endif %}
             
         </header>
-        <!-- Search for products -->
-        <div class="container">
+        <!-- Desktop search form -->
+        <div id="desktop-search">
             <div class="col-md-12 mb-4 mt-4 align-center">
                 <form class="form-inline justify-content-center" method="GET" action="{% url 'search' %}">
                     <input class="form-control form-control-sm mr-3 w-75 p-3" type="text" name="q" placeholder="Search" aria-label="Search">
@@ -110,7 +118,7 @@
         </div>
         {% block content %}{% endblock %}
         <!-- Footer -->
-        <footer class="page-footer align-center font-small navbar-light bg-light pt-4">
+        <footer class="fixed-bottom align-center bg-light pt-4">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 mb-4">
@@ -126,10 +134,10 @@
                         </form>            
                     </div>
                 </div>
-                <div class="container">        
+                <!-- <div class="container">         -->
                     <div class="row">
                         <div class="col-lg-12 col-sm-12 text-center">
-                            <div class="mb-3 ">    
+                            <div class="mb-2 ">    
                                 <a class="fb-ic">
                                     <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
                                 </a>
@@ -145,12 +153,14 @@
                             </div>
                         </div>    
                     </div>
-                </div>
+                <!-- </div> -->
             </div>
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3">© 2020 Ecommerce</div>
         </footer>
-    </div>
+    <!-- </div> -->
 </body>
 </html>
    
+    
+    
