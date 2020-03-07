@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from products.models import Product
+from products.models import Product, Category
 
 
 def cart_products(request):
@@ -16,3 +16,8 @@ def cart_products(request):
         number_of_items += quantity
         cart_items.append({'id':id, 'quantity':quantity, 'product':product})
     return {'cart_items': cart_items, 'total': total, 'number_of_items': number_of_items}  
+
+
+def cats(contexts):
+    cats_links = Category.objects.all()
+    return dict(cats_links=cats_links)
