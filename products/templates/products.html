@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 <div class="container">
     <div class="row">
@@ -8,8 +9,8 @@
             <div class="card text-center">
                 <img class="card-img-top" src="{{ product.image.url }}" alt="produto image">
                 <div class="card-body text-center">
-                    <h3 class="product-name">{{ product.name }}</h3>
-                    <p class="product-description">{{ product.description | truncatechars:250 }}</p>
+                    <h5 class="product-name">{{ product.name }}</h5>
+                    <!-- <p class="product-description">{{ product.description | truncatechars:250 }}</p> -->
                     <span><i class="fas fa-pound-sign"></i></span>
                     <span>{{ product.price }}</span>
                 </div>
