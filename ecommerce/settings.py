@@ -76,12 +76,17 @@ TEMPLATES = [
                 'django.template.context_processors.media',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'cart.contexts.cart_products'
+                'cart.contexts.cart_products',
+                'cart.contexts.cats'
             ],
         },
     },
 ]
-                
+                    
+
+                  
+
+         
 
 
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
