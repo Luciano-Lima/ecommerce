@@ -97,7 +97,7 @@
         <!-- Dynamically generates the products navegation -->
     <nav class="navbar navbar-expand navbar-light bg-light justify-content-center ">
         <ul class="navbar-nav text-center">
-            <a class="nav-link" href="{% url 'home' %}">All Products</a>
+            <a class="nav-link" href="{% url 'categories' %}">All Products</a>
             {% for category in cats_links %}
             <li class="nav-item">
                 <a class="nav-link" href="{{category.get_url}}">{{category.name}}</a>
