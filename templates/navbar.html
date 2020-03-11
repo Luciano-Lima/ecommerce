@@ -1,0 +1,60 @@
+<!-- Navegation -->
+<nav class="navbar navbar-expand-md navbar-light">
+    <a class="navbar-brand" href="/"><img src="/static/img/logo.png" class="d-inline-block align-center">Ecommerce</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+        <ul class="navbar navbar-nav navbar-right">
+            <li class="nav-item text-center">
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'profile' %}">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="icon-nav-description">Profile</span>
+                </a>
+            </li>
+            <li class="nav-item text-center">
+                <a class="nav-link" href="{% url 'logout' %}">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="icon-nav-description">Logout</span>
+                </a>
+            </li>
+                    {% if number_of_items > 0 %}
+            <li class="nav-item text-center">
+                <a class="nav-link" href="{% url 'view_cart' %}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-quantity rounded-circle icon-nav-description">{{ number_of_items }}</span>
+                    <span class="icon-nav-description">Trolley</span>
+                </a>
+                    {% else %}
+            <li class="nav-item text-center">
+                <a class="nav-link" href="{% url 'view_cart' %}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="icon-nav-description">Trolley</span>
+                </a>
+            </li>
+            </li>                
+                    {% endif %}
+                {% else %}    
+            <li class="nav-item text-center">
+                <a class="nav-link" href="{% url 'login' %}">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="icon-nav-description">login</span>
+                </a>
+            </li>                 
+            <li class="nav-item text-center">
+                <a class="nav-link" href="{% url 'register' %}">
+                    <i class="fas fa-user-alt"></i>
+                    <span class="icon-nav-description">Register</span>
+                </a>
+            </li>
+            <li class="nav-item text-center">
+                <a class="nav-link" href="{% url 'view_cart' %}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="icon-nav-description">Trolley</span>
+                </a>
+            </li>
+                {% endif %}
+        </ul>
+    </div>       
+</nav>
