@@ -1,4 +1,4 @@
-<!-- Navegation -->
+<!-- Main Navegation -->
 <nav class="navbar navbar-expand-md navbar-light">
     <a class="navbar-brand" href="/"><img src="/static/img/logo.png" class="d-inline-block align-center">Ecommerce</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,4 +57,16 @@
                 {% endif %}
         </ul>
     </div>       
+</nav>
+
+<!-- Navegation menu for categories  -->
+<nav class="navbar navbar-expand navbar-light bg-light justify-content-center ">
+    <ul class="navbar-nav text-center">
+        <a class="nav-link" href="{% url 'categories' %}">All Products</a>
+            {% for category in cats_links %}
+        <li class="nav-item">
+            <a class="nav-link" href="{{category.get_url}}">{{category.name}}</a>
+            {% endfor %}
+        </li>
+    </ul>
 </nav>
