@@ -1,8 +1,17 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+
 from .models import Product, Category
 
-# Returns all products in the database
-def home(request, category_slug=None):
+
+#returns all the products in the database
+def index(request):
+    products = Product.objects.all() 
+    return render(request, "home.html", {"products": products})
+    
+
+
+# Returns all products and display in the home page by category
+def categories(request, category_slug=None):
     category = None
     products = None
     if category_slug!=None:
