@@ -7,7 +7,9 @@
         {% for product in products %}
         <div class="col-sm-12 col-lg-4 col-md-4">
             <div class="card text-center">
-                <img class="card-img-top" src="{{ product.image.url }}" alt="produto image">
+                <a href="{{product.get_url}}">
+                    <img class="card-img-top" src="{{ product.image.url }}" alt="produto image">
+                </a>
                 <div class="card-body text-center">
                     <h5 class="product-name">{{ product.name }}</h5>
                     <span><i class="fas fa-pound-sign"></i></span>
