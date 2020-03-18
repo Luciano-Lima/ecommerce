@@ -5,7 +5,7 @@ from .models import Product, Category
 
 #returns all the products in the database
 def index(request):
-    products = Product.objects.all() 
+    products = Product.objects.all().order_by('name')
     return render(request, "home.html", {"products": products})
     
 
@@ -14,11 +14,20 @@ def index(request):
 def categories(request, category_slug=None):
     category = None
     products = None
-    if category_slug!=None:
+    if category_slug:
         category = get_object_or_404(Category,slug=category_slug)
         products = Product.objects.filter(category=category)
     else:
         products = Product.objects.all().filter()
-    return render(request, "products.html", {"category": category, "products": products})
+    return render(request, "home.html", {"category": category, "products": products})
+
+
+# Returns a single product
+def productDetail(request, category_slug, product_slug):
+    try:
+        product = Product.objects.get(category__slug=category_slug, slug=product_slug)
+    except Exception as e: 
+        raise e
+    return render(request, "products.html", {"product": product})
 
 
