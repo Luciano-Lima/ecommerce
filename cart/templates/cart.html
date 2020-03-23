@@ -5,14 +5,18 @@
 {% block content %}
 
 <div class="container">
+    <h1 class="text-center">Your shopping Basket</h1>
     <div class="row justify-content-center">
+        {% if number_of_items == 0 %}
+        <p>your shopping basket is currently empty!</p>
+        {% else %}
         {% for item in cart_items %}
         <div class="col-sm-12 col-lg-4 col-md-4">
             <div class="card text-center">
                 <img class="card-img-top" src="{{ item.product.image.url }}" alt="produto image">
                 <div class="card-body text-center">
                     <h3 class="product-name">{{ item.product.name }}</h3>
-                    <p class="product-description">{{ item.product.description }}</p>
+                    <!-- <p class="product-description">{{ item.product.description }}</p> -->
                     <span><i class="fas fa-pound-sign"></i></span>
                     <span>{{ item.product.price }}</span>
                 </div>
@@ -26,6 +30,7 @@
             <hr>
         </div>
         {% endfor %}
+        {% endif %}
     </div>
     
 </div>
