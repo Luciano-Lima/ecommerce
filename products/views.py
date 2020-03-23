@@ -21,6 +21,9 @@ def categories(request, category_slug=None):
     if category_slug:
         category = get_object_or_404(Category,slug=category_slug)
         products = Product.objects.filter(category=category)
+        paginator = Paginator(products, 1)
+        page = request.GET.get("page", 1)
+        products = paginator.page(page)
     else:
         products = Product.objects.all().filter()
     return render(request, "home.html", {"category": category, "products": products})
