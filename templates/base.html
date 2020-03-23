@@ -40,13 +40,18 @@
     
     <!-- Dynamically generates search form -->   
     {% include 'search.html' %}
+
     
     {% block content %}{% endblock %}
+
+    <!-- Dynamically generates paginator -->   
+    {% include 'paginator.html' %}
     
     <!-- Dynamically generates the footer -->
-    {% include 'footer.html' %}   
+    <!-- {% include 'footer.html' %}    -->
 </body>
 </html>    
+    
 
     
     
