@@ -1,12 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-
 from .models import Product, Category
+from django.core.paginator import Paginator
+
 
 
 #returns all the products in the database
 def index(request):
     products = Product.objects.all().order_by('name')
-    return render(request, "home.html", {"products": products})
+    paginator = Paginator(products, 1)
+    page = request.GET.get("page", 1)
+    products = paginator.page(page)
+    return render(request, "home.html", {'products': products})
     
 
 
