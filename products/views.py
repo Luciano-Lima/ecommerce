@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 #returns all the products in the database
 def index(request):
     products = Product.objects.all().order_by('name')
-    paginator = Paginator(products, 1)
+    paginator = Paginator(products, 3) #display 3 items per page
     page = request.GET.get("page", 1)
     products = paginator.page(page)
     return render(request, "home.html", {'products': products})
@@ -21,7 +21,7 @@ def categories(request, category_slug=None):
     if category_slug:
         category = get_object_or_404(Category,slug=category_slug)
         products = Product.objects.filter(category=category)
-        paginator = Paginator(products, 1)
+        paginator = Paginator(products, 3)
         page = request.GET.get("page", 1)
         products = paginator.page(page)
     else:
