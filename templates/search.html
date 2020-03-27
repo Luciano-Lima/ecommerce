@@ -1,11 +1,7 @@
 <!-- Desktop search form -->
 <div id="desktop-header-search">
-     <div id="desktop-header-search">
-        <form class="form-inline justify-content-center" method="GET" action="{% url 'search' %}">
-            <input class="form-control form-control-sm mr-3 w-75 p-3" type="text" name="q" value="{{ request.GET.q }}" placeholder="Search..." aria-label="Search">
-            <button><i class="fas fa-search" aria-hidden="true"></i></button>
-        </form>
-    </div>
+    <form class="form-inline justify-content-center" method="GET" action="{% url 'search' %}">
+        <input class="form-control form-control-sm w-50" type="text" name="q" value="{{ request.GET.q }}" placeholder="Search..." aria-label="Search">
+        <button type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
+    </form>
 </div>
-
-
