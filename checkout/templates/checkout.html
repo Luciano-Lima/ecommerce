@@ -20,56 +20,63 @@
             <div class="card text-center">
                 <img class="card-img-top" src="{{ item.product.image.url }}" alt="produto image">
                 <div class="card-body text-center">
-                    <h3 class="product-name">{{ item.product.name }}</h3>
-                    <p class="product-description">{{ item.product.description | truncatechars:250 }}</p>
+                    <h3 class="product-name">{{ item.product.name | truncatechars:50 }}</h3>
+        
                     <span><i class="fas fa-pound-sign"></i></span>
                     <span>{{ item.product.price }}</span>
                 </div>
+                {% if item.quantity == 0 %}
+                <p class="alert alert-danger badge justify-content-center ">Item removed from cart</p>
+                {% endif %} 
                 <form class="form-inline justify-content-center" method="POST" action="{% url 'update_cart' item.id %}">
-                    {% csrf_token %}
-                    <input class="form-control form-control-sm mr-3 w-25" name="quantity" type="number" min="1" max="10" placeholder="New Qty">
-                    <span>{{ item.quantity }}</span>
-                    <button class="btn btn-success" type="submit"><i class="fas fa-cart-arrow-down"></i></button>
+                {% csrf_token %}
+                    <input class="form-control form-control-sm w-50" name="quantity" type="text" placeholder="New Qty / 0 to Remove">
+                    <button class="btn btn-success ml-2" type="submit"><i class="fas fa-cart-arrow-down"></i></button>
+                    <strong><span class="item_quantity text-secondary ml-2">{{ item.quantity }}</span></strong>
                 </form>
             </div>
             <hr>
         </div>
         {% endfor %}
     </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-12 text-center">
-            <hr>
-            <span>Total</span>
-            <span><i class="fas fa-pound-sign"></i>{{ total }}</span>
-            <a href="{% url 'checkout' %}" ><button class="btn btn-success" type="submit">Procced to Checkout</button></a>
+    <!-- Cart total -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 text-center">
+                <hr>
+                <span class="text-info mr-2">Basket Total</span>
+                <span><i class="fas fa-pound-sign mr-1"></i>{{ total }}</span>
+                <div id="proc-checkout-total">
+                    <a href="{% url 'home_page' %}">
+                        <button class="btn btn-success general-style-btn m-4" type="submit"><strong>Continue Shopping</strong></button>
+                    </a> 
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <hr>
+<h1 class="text-center m-5">Complete your Purchase</h1>
 <div class="container">
     <form role="form" class="form-group" id="payment-form" action="{% url 'checkout' %}" method="POST">
         {% csrf_token %}
         <div id="card-error">
             <div class="alert-message bock-message error" id="stripe-error-message"></div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
                 <h4 class="text-center">Your Details</h4>
                 {{ order_form | as_bootstrap }}
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <h4 class="text-center">Card Details</h4>
                 {{ payment_form | as_bootstrap }}    
             </div>
+            <button class="btn btn-success text-center general-style-btn m-4" id="submit_payment_btn" name="commit" type="submit"><strong>Make Payment</strong></button>
         </div>
-        <button class="btn btn-success text-center" id="submit_payment_btn" name="commit" type="submit">Make Payment</button>
     </form>
 </div>   
-{% endblock content %}
+{% endblock content %}           
             
             
-            
-                
-                
+        
