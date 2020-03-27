@@ -17,16 +17,16 @@
                     <button class="btn btn-md btn-success text-white" type="submit"><i class="fas fa-cart-arrow-down"></i></button>
                 </form>
                 <a href="{% url 'home_page' %}">
-                    <button type="button" class="btn btn-sm btn-success text-white mt-3 w-100 ">Continue Shopping</button>    
+                    <button type="button" class="cont-shop btn btn-sm btn-success text-white mt-3 w-100 "><strong>Continue Shopping</strong></button>    
                 </a>
             </div>
         </div>
         <div class="col-sm-12 col-lg-6 col-md-6">
             <p class="product-description">{{ product.description }}</p>
-            <!-- <p class="product-description">{{ product.description | truncatechars:250 }}</p> -->
         </div>
     </div>      
 </div>
 <hr>
        
 {% endblock %}
+            
