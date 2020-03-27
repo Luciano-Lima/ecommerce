@@ -5,12 +5,17 @@
 {% block page_heading %}User Registration{% endblock %}
 
 {% block content %}
-<form method="POST">
-    {% csrf_token %}
-    {{ registration_form | as_bootstrap }}
-    <button type="submit" class="btn btn-outline-info">Create your account</button>
-</form>
+<div class="container">
+    <div class="row m-5">
+        <div class="col-md-6 offset-3">
+            <form method="POST">
+                {% csrf_token %}
+                {{ registration_form | as_bootstrap }}
+                <button type="submit" class="btn btn-outline-info general-style-btn w-100 ml-0">Create your account</button>
+            </form>
+            <p class="text-muted m-3">Already have an account,  <a href="{% url 'login' %}">Sign in <i class="fas fa-angle-right ml-1"></i></a></p>
+        </div>
+    </div>
+</div>
 <hr>
-<p>Already have an account,  <a href="{% url 'login' %}">sign in <i class="fas fa-angle-right"></i></a></p>
-
 {% endblock %}
