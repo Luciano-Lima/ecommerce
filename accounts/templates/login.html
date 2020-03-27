@@ -2,19 +2,15 @@
 {% load bootstrap_tags %}
 {% block page_title %}Login{% endblock %} 
 
-
-
-
-
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row m-5">
         <div class="class col-md-6 offset-3">
             <form method="POST">
                 {% csrf_token %}
                 {{ login_form | as_bootstrap }}
-                <p class="text-muted">Forgot you Password?<a href="{% url 'password_reset' %}"> Reset password:</a></p>
-                <button type="submit" class="btn btn-outline-info">Submit</button>
+                <button type="submit" class="btn btn-outline-info general-style-btn w-100 ml-0">Submit</button>
+                <p class="text-muted m-3">Forgot you Password?<a href="{% url 'password_reset' %}"> Reset password:</a></p>
             </form>
 
         </div>
