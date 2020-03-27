@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="container">
-    <h1 class="text-center">Your shopping Basket</h1>
+    <h1 class="text-center m-4">Your shopping Basket</h1>
     <div class="row justify-content-center">
     {% if number_of_items == 0  %}
         <div class="empty_basket">
@@ -13,51 +13,50 @@
         </div>
         <div class="continue_shopping ml-4">
             <a href="{% url 'home_page' %}">
-                <button type="button" class="btn btn-sm btn-success text-white w-100 ">Return to Shopping</button>    
+                <button type="button" class="btn btn-sm btn-success text-white w-100 "><strong>Return to Shopping</strong></button>    
             </a> 
         </div>
-        
-
         {% else %}
+
         {% for item in cart_items %}
-        
         <div class="col-sm-12 col-lg-4 col-md-4">
             <div class="card text-center">
                 <img class="card-img-top" src="{{ item.product.image.url }}" alt="produto image">
                 <div class="card-body text-center">
                     <h3 class="product-name">{{ item.product.name | truncatechars:50 }}</h3>
+                    <p>{{ item.product.description | truncatechars:200 }}</p>
                     <span><i class="fas fa-pound-sign"></i></span>
                     <span>{{ item.product.price }}</span>
                 </div>
                 {% if item.quantity == 0 %}
                 <p class="alert alert-danger badge justify-content-center ">Item removed from cart</p>
-            {% endif %} 
+                {% endif %} 
                 <form class="form-inline justify-content-center" method="POST" action="{% url 'update_cart' item.id %}">
                     {% csrf_token %}
-                    <input class="form-control form-control-sm mr-2 w-25" name="quantity" type="number" min="0" max="10" placeholder="New Qty">
-                    <strong><span class="item_quantity text-secondary">{{ item.quantity }}</span></strong>
+                    <input class="form-control form-control-sm w-50" name="quantity" type="text" placeholder="New Qty / 0 to Remove">
                     <button class="btn btn-success ml-2" type="submit"><i class="fas fa-cart-arrow-down"></i></button>
+                    <strong><span class="item_quantity text-secondary ml-2">{{ item.quantity }}</span></strong>
                 </form>
-                
             </div>
             <hr>
         </div>
         {% endfor %}
+        <!-- Render the checkout page -->
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12 text-center">
                     <hr>
-                    <span>Basket Total</span>
-                    <span><i class="fas fa-pound-sign"></i>{{ total }}</span>
-                    <a href="{% url 'checkout' %}">
-                        <button class="btn btn-success" type="submit">Procced to Checkout</button>
-                    </a> 
+                    <span class="text-info mr-2">Basket Total</span>
+                    <span><i class="fas fa-pound-sign mr-1"></i>{{ total }}</span>
+                    <div id="proc-checkout-total">
+                        <a href="{% url 'checkout' %}">
+                            <button class="btn btn-success general-style-btn m-4" type="submit"><strong>Proceed to Checkout</strong></button>
+                        </a> 
+                    </div>
                 </div>
             </div>
         </div>
-        
     {% endif %}
     </div>
-    {% endblock %}  
 </div>
-        
+{% endblock %}     
