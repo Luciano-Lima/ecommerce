@@ -2,24 +2,24 @@
 {% block content %}
 
 <div class="container">
-    <div class="row">
-        {% for product in products %}
-        <div class="col-sm-12 col-lg-4 col-md-4">
-            <div class="card text-center">
-                <a href="{{product.get_url}}">
-                    <img class="card-img-top" src="{{ product.image.url }}" alt="produto image">
-                </a>
-                <div class="card-body text-center">
-                    <h5 class="product-name">{{ product.name }}</h5>
-                    <span><i class="fas fa-pound-sign"></i></span>
-                    <span>{{ product.price }}</span>
-                </div>
+    <div class="row justify-content-center">
+    {% for product in products %}
+    <div class="col-sm-12 col-lg-4 col-md-4">
+        <div class="card text-center">
+            <a href="{{product.get_url}}">
+                <img class="card-img-top" src="{{ product.image.url }}" alt="produto image">
+            </a>
+            <div class="card-body text-center">
+                <h5 class="product-name">{{ product.name }}</h5>
+                <span><i class="fas fa-pound-sign"></i></span>
+                <span>{{ product.price }}</span>
             </div>
-            <hr>
         </div>
-        {% endfor %}
+        <hr>
     </div>
+    {% empty %}
+    <p class="no-results">Oops, we didn't find any results!<br>Don't give up, try again...</p>
+{% endfor %}
 </div>
-
-
-{% endblock %}
+</div>
+{% endblock %}       
