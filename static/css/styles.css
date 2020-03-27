@@ -1,27 +1,58 @@
-
-
+/* Main style */
+body {
+    font-family: 'Lato', Arial, sans-serif;
+    background: #fff;
+    color: #333;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+}
+    
 .bg-light {
-    background-color: #f1f1f1!important;
+    background-color: #dee2e6!important;
 
 }
 
-/* Navbar */
+
+/* Navbar & icons*/
 a.navbar-brand img {
     width: 50px;
     height: 50px;
 }
 
-.d-inline-block {
-    margin-right: 10px;
-}  
+.nav-categ {
+    font-weight: 800;
+    font-size: 1rem;
+    font-family: monospace;
+    text-transform: capitalize;
+    border-right: 1px ridge;
+    border-color: azure;
+}
 
-
-.fa-search {
-    padding-left: 0;
+.nav-categ:hover {
+    background: #c2fbff;
 }
 
 .icon-nav-description {
     display:block;
+}
+
+.rounded-circle {
+    background-color: #ff000f;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 9px;
+    padding-left: 5px;
+}
+
+.page-item.active .page-link {
+    background-color: #71e2f0;
+    border-color: #71e2f0; 
+}
+
+.page-link {
+    background-color: #f1f1f1;
 }
 
 /* User profile page */
@@ -32,7 +63,63 @@ a.navbar-brand img {
 .user-profile-sigout-space {
     margin-left: 6px;
 }
+    
+.d-inline-block {
+    margin-right: 10px;
+}  
 
+#desktop-header-search {
+    margin-top: 40px;
+    
+}
+
+/* Input and buttons */
+input[type="text"] {
+    height: 35px;
+}
+
+button[type="submit"] {
+    margin-left: -50px;
+    height: 35px;
+    width: 50px;
+    background: #71e2f0;
+    color: white;
+    border: 0;
+    -webkit-appearance: none;
+    outline: none;
+}
+
+/* general styling login/register/payment/return shopping buttons */
+button[type="submit"].general-style-btn {
+    background-color: #2288aa;
+    width:50%;
+}
+
+
+
+button[type="button"] {
+    background-color: #2288aa;
+}
+
+.btn-success:hover {
+    background-color: #2388aa;
+}    
+    
+
+/* remove paginator focus */
+.page-link:focus {
+    z-index: 2;
+    outline: 0;
+    box-shadow: none;
+}
+
+/* Search message  */
+.no-results {
+    color: #333333;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 10px;
+}
 
 /* All products page */
 .product-name {
@@ -49,26 +136,14 @@ a.navbar-brand img {
     font-size: 12px;
     margin-left: 3px;
     font-weight: 800;
-    
-    
 }
-
-.rounded-circle {
-    background-color: #ff000f;
-    width: 16px;
-    height: 16px;
-    position: absolute;
-    top: 9px;
-    padding-left: 5px;
-}
-
-
-
-Stripe Checkout 
+    
+/* Stripe Checkout  */
  #credit-card-errors {
     display: none;
 } 
 
+/* Media queries */
 @media only screen and (max-width: 600px) {
     
     .hide-mobile {
