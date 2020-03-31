@@ -32,11 +32,15 @@
         {% if messages %}
         <div class="messages m-4 text-muted">
             {% for message in messages %}
+            <p class="alert alert-{{ message.tags }}"> 
                 {{ message }}
+            </p>
             {% endfor %}
-        </div>
+            </div>
         {% endif %}
-    </header>
+        </header>
+                
+                
     
     <!-- Dynamically generates search form -->   
     {% include 'search.html' %}
