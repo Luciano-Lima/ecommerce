@@ -6,11 +6,16 @@ body {
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
     margin: 0;
+    text-transform: capitalize;
 }
     
 .bg-light {
     background-color: #dee2e6!important;
 
+}
+
+.messages {
+    font-family: 'Courier New', Courier, monospace;
 }
 
 
@@ -71,6 +76,18 @@ a.navbar-brand img {
 #desktop-header-search {
     margin-top: 40px;
     
+}
+
+.card-account-details {
+    width: 14rem;
+    float: left;
+    margin-left: 3rem;
+
+}
+    
+
+.user-update-header {
+    margin-right: 255px;
 }
 
 /* Input and buttons */
