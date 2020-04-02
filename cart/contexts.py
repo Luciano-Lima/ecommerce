@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from products.models import Product, Category
+from newsletter.forms import NewsletterForm
 
 
 def cart_products(request):
@@ -18,7 +19,15 @@ def cart_products(request):
         cart_items.append({'id':id, 'quantity':quantity, 'product':product})
     return {'cart_items': cart_items, 'total': total, 'number_of_items': number_of_items}  
 
-
+# Context processor for Category
 def cats(contexts):
     cats_links = Category.objects.all()
     return dict(cats_links=cats_links)
+
+
+
+# Context processor for newsletter
+def signup(contexts):
+    return {
+        'signup' : NewsletterForm()
+    }
