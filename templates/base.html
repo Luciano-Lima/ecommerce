@@ -30,14 +30,17 @@
 
         <!-- Diplays a message to the user -->
         {% if messages %}
-        <div class="messages m-4 text-muted">
-            {% for message in messages %}
-            <p class="alert alert-{{ message.tags }}"> 
-                {{ message }}
-            </p>
-            {% endfor %}
+        <div class="container">
+            <div class="messages m-4 text-muted text-center">
+                {% for message in messages %}
+                <p class="alert alert-{{ message.tags }}"> 
+                    {{ message }}
+                </p>
+                {% endfor %}
             </div>
+        </div>
         {% endif %}
+        
         </header>
                 
                 
