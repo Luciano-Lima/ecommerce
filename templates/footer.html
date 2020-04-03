@@ -1,5 +1,8 @@
+{% load bootstrap_tags %}
+
 <footer class="align-center bg-light p-4">
     <div class="container">
+        <!-- Search form hiding on mobile  -->
         <div class="row">
             <div class="col-md-6 mb-4 hide-mobile">
                 <form class="form-inline justify-content-center" method="GET" action="{% url 'search' %}">
@@ -7,13 +10,16 @@
                     <button type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>        
                 </form>
             </div>
+            <!-- Newsletter subscription form -->
             <div class="col-md-6 mb-4">
-                <form class="form-inline justify-content-center">
-                    <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Your email" aria-label="Your email">
+                <form method="POST" class="form-inline hide-email justify-content-center" action="{% url 'newsletter_signin' %}">
+                    {% csrf_token %}
+                    {{ signup | as_bootstrap }}
                     <button type="submit"><i class="fas fa-envelope" aria-hidden="true"></i></button>
                 </form>
-            </div>
+            </div>        
         </div>
+        <!-- Social links -->
         <div class="row">
             <div class="col-lg-12 col-sm-12 text-center">
                 <div class="mb-2 ">
@@ -36,3 +42,8 @@
     <!-- Copyright -->
     <div class="footer-copyright text-center text-muted">© 2020 Ecommerce</div>
 </footer>
+                    
+
+
+               
+            
