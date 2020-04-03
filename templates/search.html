@@ -1,6 +1,6 @@
 <!-- Desktop search form -->
 <div id="desktop-header-search">
-    <form class="form-inline justify-content-center" method="GET" action="{% url 'search' %}">
+    <form class="form-inline justify-content-center m-4" method="GET" action="{% url 'search' %}">
         <input class="form-control form-control-sm w-50" type="text" name="q" value="{{ request.GET.q }}" placeholder="Search..." aria-label="Search">
         <button type="submit"><i class="fas fa-search" aria-hidden="true"></i></button>
     </form>

@@ -24,7 +24,7 @@
 <h1 class="user-update-header text-center">Updated your profile details</h1>
 <div class="container">
     <div class="row m-5">
-        <div class="col-md-6 offset-3">
+        <div class="col-md-6 mx-auto">
             <form method="POST">
                 {% csrf_token %}
                 {{ user_prof_form | as_bootstrap }}

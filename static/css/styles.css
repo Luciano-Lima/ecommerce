@@ -25,6 +25,10 @@ a.navbar-brand img {
     height: 50px;
 }
 
+.logo-text {
+    font-family: cursive;
+}
+
 .nav-categ {
     font-weight: 800;
     font-size: 1rem;
@@ -95,6 +99,16 @@ input[type="text"] {
     height: 35px;
 }
 
+
+.newsletter-email #div_id_email input[type="email"] {
+    /* background-color: #ffffff;
+    width: 337.5px; */
+    height: 35px;
+    /* margin: 0px 16px;
+    padding: 4px 8px; */
+}
+
+
 button[type="submit"] {
     margin-left: -50px;
     height: 35px;
@@ -105,6 +119,7 @@ button[type="submit"] {
     -webkit-appearance: none;
     outline: none;
 }
+   
 
 /* general styling login/register/payment/return shopping buttons */
 button[type="submit"].general-style-btn {
@@ -138,10 +153,6 @@ button[type="button"] {
     padding-top: 10px;
 }
 
-/* All products page */
-.product-name {
-    min-height: 120px;
-}
 
 .card {
     border: none;
@@ -187,3 +198,4 @@ button[type="button"].newsletter-return-home {
     }
 
 }
+

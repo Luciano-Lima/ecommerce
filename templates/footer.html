@@ -13,8 +13,11 @@
             <!-- Newsletter subscription form -->
             <div class="col-md-6 mb-4">
                 <form method="POST" class="form-inline hide-email justify-content-center" action="{% url 'newsletter_signin' %}">
-                    {% csrf_token %}
+                    <div class="newsletter-email w-75">
+                        {% csrf_token %}
                     {{ signup | as_bootstrap }}
+                    </div>
+                    
                     <button type="submit"><i class="fas fa-envelope" aria-hidden="true"></i></button>
                 </form>
             </div>        

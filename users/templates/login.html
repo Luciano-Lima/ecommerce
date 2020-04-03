@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container">
     <div class="row m-5">
-        <div class="class col-md-6 offset-3">
+        <div class="class col-md-6 mx-auto">
             <form method="POST">
                 {% csrf_token %}
                 {{ login_form | as_bootstrap }}

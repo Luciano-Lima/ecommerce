@@ -10,7 +10,7 @@
         <div class="col-sm-12 col-lg-4 col-md-4">
             <div class="card text-center">
                 <img class="card-img-top" src="{{ product.image.url }}" alt="produto image">
-                <span><i class="fas fa-pound-sign">{{ product.price }}</i></span>
+                <span><i class="fas fa-pound-sign m-3">{{ product.price }}</i></span>
                 <form class="form-inline justify-content-center" method="POST" action="{% url 'add_to_cart' product.id %}}">
                     {% csrf_token %}
                     <input class="form-control form-control w-75" name="quantity" type="number" min="1" max="10" placeholder="Quantity">
