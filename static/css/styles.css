@@ -95,7 +95,7 @@ a.navbar-brand img {
 }
 
 /* Input and buttons */
-input[type="text"] {
+input[type="number"], input[type="text"] {
     height: 35px;
 }
 

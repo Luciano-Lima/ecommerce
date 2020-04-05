@@ -30,7 +30,7 @@
                 {% endif %} 
                 <form class="form-inline justify-content-center" method="POST" action="{% url 'update_cart' item.id %}">
                 {% csrf_token %}
-                    <input class="form-control form-control-sm w-50" name="quantity" type="text" placeholder="New Qty / 0 to Remove">
+                    <input class="form-control form-control-sm w-50" name="quantity" type="number" min="1" max="10" placeholder="New Qty / 0 to Remove">
                     <button class="btn btn-success ml-2" type="submit"><i class="fas fa-cart-arrow-down"></i></button>
                     <strong><span class="item_quantity text-secondary ml-2">{{ item.quantity }}</span></strong>
                 </form>

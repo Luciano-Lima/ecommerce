@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from .models import Product, Category
+# from .models import Product, Category
 from django.core.paginator import Paginator
+from products.models import Product, Category
 
 
 

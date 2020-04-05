@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
     {% if number_of_items == 0  %}
         <div class="empty_basket">
-            <p>Your shopping basket is currently empty!</p>
+            <p>Your shopping basket is currently empty <strong>|</strong> or you are not logged in!</p>
         </div>
         <div class="continue_shopping ml-4">
             <a href="{% url 'home_page' %}">
