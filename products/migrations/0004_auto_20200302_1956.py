@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='slug',
-            field=models.SlugField(default='test', max_length=200, unique=True),
+            field=models.SlugField(max_length=200, unique=True),
             preserve_default=False,
         ),
         migrations.AlterField(
@@ -51,7 +51,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='category',
-            field=models.ForeignKey(default='test', on_delete=django.db.models.deletion.CASCADE, to='products.Category'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.Category'),
             preserve_default=False,
         ),
     ]
