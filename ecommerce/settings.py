@@ -37,7 +37,7 @@ STRIPE_SECRET = os.environ.get('STRIPE_SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['luciano-online-store.herokuapp.com']
 
 
 # Application definition
