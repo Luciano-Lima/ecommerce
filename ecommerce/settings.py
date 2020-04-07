@@ -35,9 +35,9 @@ STRIPE_PUBLISHABLE = os.environ.get('STRIPE_PUBLISHABLE')
 STRIPE_SECRET = os.environ.get('STRIPE_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['luciano-online-store.herokuapp.com']
+ALLOWED_HOSTS = ['luciano-online-store.herokuapp.com','127.0.0.1:8000', '127.0.0.1']
 
 
 # Application definition
@@ -173,7 +173,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-#THIS MIGHT NOT BE NECESSARY THIS IS FOR CLOULD9 -----------------------------------------
+#THIS MIGHT NOT BE NECESSARY THIS IS FOR CLOULD9 
 # MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 #Reset email 
