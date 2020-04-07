@@ -21,12 +21,12 @@ def categories(request, category_slug=None):
     products = None
     if category_slug:
         category = get_object_or_404(Category,slug=category_slug)
-        products = Product.objects.filter(category=category)
+        products = Product.objects.filter(category=category).order_by_('name')
         paginator = Paginator(products, 3)
         page = request.GET.get("page", 1)
         products = paginator.page(page)
     else:
-        products = Product.objects.all().filter()
+        products = Product.objects.all().filter().order_by('name')
     return render(request, "home.html", {"category": category, "products": products})
 
 

@@ -7,7 +7,7 @@ def search_products(request):
     products_items = Product.objects.all().order_by('name')
     query = request.GET.get('q')
     if query:
-        products_items = Product.objects.filter(name__icontains=query)
+        products_items = Product.objects.filter(name__icontains=query).order_by('name')
     paginator = Paginator(products_items, 2)
     page = request.GET.get('page')
     try: 
