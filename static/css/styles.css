@@ -6,7 +6,7 @@ body {
     font-size: 14px;
     -webkit-font-smoothing: antialiased;
     margin: 0;
-    text-transform: capitalize;
+    
 }
     
 .bg-light {
@@ -90,9 +90,6 @@ a.navbar-brand img {
 }
     
 
-.user-update-header {
-    margin-right: 255px;
-}
 
 /* Input and buttons */
 input[type="number"], input[type="text"] {
@@ -101,11 +98,12 @@ input[type="number"], input[type="text"] {
 
 
 .newsletter-email #div_id_email input[type="email"] {
-    /* background-color: #ffffff;
-    width: 337.5px; */
+    
     height: 35px;
-    /* margin: 0px 16px;
-    padding: 4px 8px; */
+}
+
+#div_id_email label {
+    display: none;
 }
 
 
@@ -119,15 +117,27 @@ button[type="submit"] {
     -webkit-appearance: none;
     outline: none;
 }
-   
+
+button[type="submit"].test {
+    position: absolute;
+    margin-left: 25%;
+    top: 0;
+    padding: 2px;
+}
+  
+
+.btn-edit-cart {
+    display: contents;
+    
+}
+
 
 /* general styling login/register/payment/return shopping buttons */
 button[type="submit"].general-style-btn {
     background-color: #2288aa;
     width:50%;
 }
-
-
+   
 
 button[type="button"] {
     background-color: #2288aa;
@@ -197,5 +207,22 @@ button[type="button"].newsletter-return-home {
         display: none;
     }
 
+    .card
+
+    .card-account-details {
+        width: 0;
+    }
+
 }
+
+@media only screen and (min-width: 1200px) {
+
+    button[type="submit"].test {
+        margin-left: 20%;
+        
+        
+    }
+}
+
+
 

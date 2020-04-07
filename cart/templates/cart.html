@@ -8,10 +8,10 @@
     <h1 class="text-center m-4">Your shopping Basket</h1>
     <div class="row justify-content-center">
     {% if number_of_items == 0  %}
-        <div class="empty_basket">
+        <div class="text-center m-3">
             <p>Your shopping basket is currently empty <strong>|</strong> or you are not logged in!</p>
         </div>
-        <div class="continue_shopping ml-4">
+        <div class="mb-4">
             <a href="{% url 'home_page' %}">
                 <button type="button" class="btn btn-sm btn-success text-white w-100 "><strong>Return to Shopping</strong></button>    
             </a> 
@@ -31,16 +31,24 @@
                 {% if item.quantity == 0 %}
                 <p class="alert alert-danger badge justify-content-center ">Item removed from cart</p>
                 {% endif %} 
-                <form class="form-inline justify-content-center" method="POST" action="{% url 'update_cart' item.id %}">
-                    {% csrf_token %}
-                    <input class="form-control form-control-sm w-50" name="quantity" type="number" min="1" max="10" placeholder="Quantity">
-                    <button class="btn btn-success ml-2" type="submit"><i class="fas fa-cart-arrow-down"></i></button>
-                    <strong><span class="item_quantity text-secondary ml-2">{{ item.quantity }}</span></strong>
-                </form>
-                <form class="form-inline justify-content-center" method="POST" action="{% url 'delete_cart' item.id %}">
-                    {% csrf_token %}
-                    <button class="btn btn-success ml-2" type="submit"><i class="fas fa-trash-alt"></i></button>
-                </form>   
+                <div class="form-inline justify-content-center">
+                    <form class="btn-edit-cart" method="POST" action="{% url 'update_cart' item.id %}">
+                        {% csrf_token %}
+                        <input class="form-control form-control-sm w-50" name="quantity" type="number" min="1" max="10" placeholder="New Quantity">
+                        <button class="btn btn-success edit-cart-btn" type="submit"><i class="fas fa-cart-arrow-down"></i></button>
+                        <strong><span class="item-quantity text-secondary ml-2">{{ item.quantity }}</span></strong>
+                    </form>
+                
+                    <div class="btn-edit-cart">
+                        <form class="" method="POST" action="{% url 'delete_cart' item.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-success delete-cart-btn ml-2" type="submit"><i class="fas fa-trash-alt"></i></button>
+                        </form>   
+                    </div>
+                </div>
+                
+               
+                
             </div>
             
 
